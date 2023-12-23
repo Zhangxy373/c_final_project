@@ -10,8 +10,9 @@ static void calc_bmi(float(*infos)[2], float* bmis, char n_people)
 	* bmis     ->  denotes the pointer pointing to the first address of array bmis;
 	* n_people ->  denotes the number of people.
 	*/
-
-	// Your code.
+	for (int i = 0; i < (int)n_people; i++) {
+		bmis[i] = infos[i][1] / pow((infos[i][0]/100), 2);
+	}
 }
 
 // Calculate the value of overweight percentage for each person.
@@ -23,8 +24,16 @@ static void calc_overweight(float(*infos)[2], char* gender, float* overweight, c
 	* overweight ->  denotes the pointer pointing to the overweight array;
 	* n_people	 ->	 denotes the number of people.
 	*/
-
-	// Your code.
+	float sw[8];
+	for (int i = 0; i < (int)n_people; i++) {
+		if (gender[i] == 'M') {
+			sw[i] = (infos[i][0] - 80) * 0.7;
+		}
+		else {
+			sw[i] = (infos[i][0] - 70) * 0.6;
+		}
+		overweight[i] = (infos[i][1] - sw[i]) / sw[i];
+	}
 }
 
 // Based on the BMI values, sort the bmis and sorted_index arrays through methods like bubble/selection sorting.
@@ -35,8 +44,15 @@ static void ascending_sorting(float* bmis, char* sorted_index, char n_people)
 	* sorted_index ->  denotes the pointer pointing to the sorted_index array;
 	* n_people	   ->  denotes the number of people.
 	*/
-
-	// Your code.
+	for (int i = 0; i < (int)n_people - 1; i++) {
+		for (int j = 0; j < (int)n_people - i - 1; j++) {
+			if (bmis[sorted_index[j]] > bmis[sorted_index[j + 1]]) {
+				int temp = sorted_index[j];
+				sorted_index[j] = sorted_index[j + 1];
+				sorted_index[j + 1] = temp;
+			}
+		}
+	}
 }
 
 // Display the result in a terminal window
@@ -57,24 +73,24 @@ static void display(const char** names, char* gender, float* bmis, float* overwe
 	printf("%10s", "BMI");
 	printf("%28s", "health condition");
 	printf("%22s", "Overweight\n\n");
-	for ()
+	for (int i=0;i<(int)n_people;i++)
 	{
-		printf("%7s", /*sorted name*/);
-		printf("%8c", /*sorted gender*/);
-		printf("%16f", /*sorted BMI values*/);
-		if ()
+		printf("%7s", names[sorted_index[i]]);
+		printf("%8c", gender[sorted_index[i]]);
+		printf("%16f", bmis[sorted_index[i]]);
+		if (bmis[sorted_index[i]]>=35)
 			printf("%23s", "Severe obesity");
-		else if ()
+		else if (bmis[sorted_index[i]]>=30)
 			printf("%23s", "Moderate obesity");
-		else if ()
+		else if (bmis[sorted_index[i]]>=27)
 			printf("%23s", "Mild obesity");
-		else if ()
+		else if (bmis[sorted_index[i]]>=24)
 			printf("%23s", "obesity");
-		else if ()
+		else if (bmis[sorted_index[i]]>=18.5)
 			printf("%23s", "Normal range");
 		else
 			printf("%23s", "Underweight");
-		printf("%20f", /*sorted overweight*/);
+		printf("%20f", overweight[sorted_index[i]]);
 		printf(" %%\n\n");
 	}
 	printf("\n");
@@ -90,18 +106,18 @@ int main()
 
 	//Calculate the BMI values for each person
 	float bmis[8];
-	calc_bmi(/*formal arguments*/);
+	calc_bmi(infos, bmis,  n_people);
 
 	//Sort the people according to the BMI values
 	char sorted_index[8] = { 0,1,2,3,4,5,6,7 };
-	ascending_sorting(/*formal arguments*/);
+	ascending_sorting(bmis, sorted_index, n_people);
 
 	// Calculate the overweight percentage values
 	float overweight[8];
-	calc_overweight(/*formal arguments*/);
+	calc_overweight(infos, gender, overweight, n_people);
 
 	// Display the result in a terminal window
-	display(/*formal arguments*/);
+	display(names, gender, bmis, overweight, sorted_index, n_people);
 
 	return 0;
 }
