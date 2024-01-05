@@ -1,19 +1,4 @@
-﻿  basic.cpp
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(14,25): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(30,31): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(33,31): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(103,25): warning C4305: “初始化”: 从“double”到“float”截断
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(103,31): warning C4305: “初始化”: 从“double”到“float”截断
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(103,38): warning C4305: “初始化”: 从“double”到“float”截断
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(103,44): warning C4305: “初始化”: 从“double”到“float”截断
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(103,51): warning C4305: “初始化”: 从“double”到“float”截断
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(103,57): warning C4305: “初始化”: 从“double”到“float”截断
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(103,65): warning C4305: “初始化”: 从“double”到“float”截断
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(103,71): warning C4305: “初始化”: 从“double”到“float”截断
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(103,84): warning C4305: “初始化”: 从“double”到“float”截断
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(103,91): warning C4305: “初始化”: 从“double”到“float”截断
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(103,97): warning C4305: “初始化”: 从“double”到“float”截断
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(104,9): warning C4305: “初始化”: 从“double”到“float”截断
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(104,22): warning C4305: “初始化”: 从“double”到“float”截断
-C:\Users\35633\Desktop\临时\c期末project\basic.cpp(104,28): warning C4305: “初始化”: 从“double”到“float”截断
+﻿  advanced.cpp
+C:\Users\35633\Desktop\临时\c期末project\advanced.cpp(34,30): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+C:\Users\35633\Desktop\临时\c期末project\advanced.cpp(55,26): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
   final_project.vcxproj -> C:\Users\35633\Desktop\临时\c期末project\final_project\x64\Debug\final_project.exe

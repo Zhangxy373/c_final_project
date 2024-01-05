@@ -4,7 +4,7 @@
 #include<stdlib.h>
 #include<math.h>
 
-// Structure definition
+//Structure definition
 struct Person_type
 {
 	char name[10] = { 0 };
@@ -35,48 +35,48 @@ static void calc_bmi(struct Person_type* ptr, char n_people)
 
 		// Determining health condition based on BMI
 		if (ptr[i].bmi < 18.5) strcpy_s(ptr[i].health_condition, "Underweight");
-		else if (ptr[i].bmi < 24) strcpy_s(ptr[i].health_condition, "Normal");
+		else if (ptr[i].bmi < 24) strcpy_s(ptr[i].health_condition, "Normal range");
 		else if (ptr[i].bmi < 27) strcpy_s(ptr[i].health_condition, "Overweight");
-		else if (ptr[i].bmi < 30) strcpy_s(ptr[i].health_condition, "Mild Obesity");
-		else if (ptr[i].bmi < 35) strcpy_s(ptr[i].health_condition, "Moderate Obesity");
-		else strcpy_s(ptr[i].health_condition, "Severe Obesity");
+		else if (ptr[i].bmi < 30) strcpy_s(ptr[i].health_condition, "Mild obesity");
+		else if (ptr[i].bmi < 35) strcpy_s(ptr[i].health_condition, "Moderate obesity");
+		else strcpy_s(ptr[i].health_condition, "Severe obesity");
 
+	}
 }
 
 
 // Calculate the overweight percentage values for all those people.
-static void calc_overweight(struct Person_type* ptr, char n_people)
-{
-	/*
-	* ptr	   -> the structure pointer.
-	* n_people -> the number of people.
-	*/
-	for (int i = 0; i < n_people; i++) {
-		float standard_weight = (ptr[i].gender == 'M') ? 22 * pow((ptr[i].height / 100), 2) : 21 * pow((ptr[i].height / 100), 2);
-		ptr[i].overweight = ((ptr[i].weight - standard_weight) / standard_weight) * 100;
+	static void calc_overweight(struct Person_type* ptr, char n_people) {
+		/*
+		* ptr	   -> the structure pointer.
+		* n_people -> the number of people.
+		*/
+		for (int i = 0; i < n_people; i++) {
+			float standard_weight = (ptr[i].gender == 'M') ? 22 * pow((ptr[i].height / 100), 2) : 21 * pow((ptr[i].height / 100), 2);
+			ptr[i].overweight = ((ptr[i].weight - standard_weight) / standard_weight) * 100;
+		}
 	}
-}
 
 
 // Sort structure pointers in the pointer array.
-static void ascending_sorting(struct Person_type** arr, char n_people)
-{
-	/*
-	* arr	   -> the pointer array containing the structure pointers.
-	* n_people -> the number of people.
-	*/
-	
-	// Sort the pointer array using methods like bubble/selection sorting.
-	for (int i = 0; i < n_people - 1; i++) {
-		for (int j = 0; j < n_people - i - 1; j++) {
-			if (arr[j]->bmi > arr[j + 1]->bmi) {
-				struct Person_type* temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
+	static void ascending_sorting(struct Person_type** arr, char n_people)
+	{
+		/*
+		* arr	   -> the pointer array containing the structure pointers.
+		* n_people -> the number of people.
+		*/
+
+		// Sort the pointer array using methods like bubble/selection sorting.
+		for (int i = 0; i < n_people - 1; i++) {
+			for (int j = 0; j < n_people - i - 1; j++) {
+				if (arr[j]->bmi > arr[j + 1]->bmi) {
+					struct Person_type* temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
 			}
 		}
 	}
-}
 
 // File reading function
 void read_file(struct Person_type* ptr, char n_people, char n_name)
@@ -86,21 +86,27 @@ void read_file(struct Person_type* ptr, char n_people, char n_name)
 	errno_t err;
 	if (err = fopen_s(&fp, "data.txt", "rb") != 0)
 	{
-		printf("Cannot open fhe file\n");
+		printf("Cannot open fhe data file\n");
 		exit(0);
 	}
 	// read the file
-	for ()
-	{	
+	for (int i = 0; i < n_people; i++)
+	{
+		fgets(ptr[i].name, n_name, fp);
+		ptr[i].name[strcspn(ptr[i].name, "\n")] = 0;
 		// use fgets() function to read strings.
 	}
-	for ()
+	for (int i = 0; i < n_people; i++)
 	{
+		ptr[i].gender = fgetc(fp);
+		fgetc(fp);
 		// use fgetc() function to read characters.
 		// use fgetc() function to get a "\n" to eliminate.
 	}
-	for ()
+	for (int i = 0; i < n_people; i++)
 	{
+		fread(&ptr[i].height, sizeof(float), 1, fp);
+		fread(&ptr[i].weight, sizeof(float), 1, fp);
 		// use fread() function to read data.
 	}
 	// close file
@@ -115,21 +121,27 @@ static void write_file(struct Person_type** arr, char n_people)
 	errno_t err;
 	if (err = fopen_s(&fp, "advanced_result.txt", "w") != 0)
 	{
-		printf("Cannot open fhe file\n");
+		printf("Cannot open fhe result file\n");
 		exit(0);
 	}
 	// write the file
-	for ()
+	for (int i = 0; i < n_people; i++)
 	{
+		fputs(arr[i]->name, fp);
+		fprintf(fp, "\n");
+		fputc(arr[i]->gender, fp);
+		fprintf(fp, "\n");
+		fprintf(fp, "%.1f\n%.1f\n%f\n%f%%\n%s\n\n", arr[i]->height, arr[i]->weight,
+			arr[i]->bmi, arr[i]->overweight, arr[i]->health_condition);
 		// use fputs() function to write strings
 		// use fputc() function to write characters
 		// use fprintf() function to write data
 	}
 	// close the file
-}
+};
 
 
-int main(){
+int main() {
 
 	char n_people = 8;
 	char n_name = 10;

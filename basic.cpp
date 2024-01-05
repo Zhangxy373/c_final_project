@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<math.h>
 
-
 // Calculate the BMI value for each person.
 static void calc_bmi(float(*infos)[2], float* bmis, char n_people)
 {
@@ -32,7 +31,7 @@ static void calc_overweight(float(*infos)[2], char* gender, float* overweight, c
 		else {
 			sw[i] = (infos[i][0] - 70) * 0.6;
 		}
-		overweight[i] = (infos[i][1] - sw[i]) / sw[i];
+		overweight[i] = (infos[i][1] - sw[i]) / sw[i]*100;
 	}
 }
 
